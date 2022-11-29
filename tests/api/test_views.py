@@ -19,7 +19,7 @@ def test_get_reco_with_uncorrect_token(
     client: TestClient,
 ) -> None:
     auth_token = "uncorrect_token"
-    headers = {"Authorization": "Bearer " + auth_token}
+    headers = {"Authorization": f"Bearer {auth_token}"}
     user_id = 123
     path = GET_RECO_PATH.format(
         model_name="random_number_model", user_id=user_id
@@ -50,7 +50,7 @@ def test_get_reco_success(
     service_config: ServiceConfig,
 ) -> None:
     auth_token = service_config.admin_token
-    headers = {"Authorization": "Bearer " + auth_token}
+    headers = {"Authorization": f"Bearer {auth_token}"}
     user_id = 123
     path = GET_RECO_PATH.format(
         model_name="random_number_model", user_id=user_id
@@ -70,7 +70,7 @@ def test_get_reco_for_unknown_model(
     service_config: ServiceConfig,
 ) -> None:
     auth_token = service_config.admin_token
-    headers = {"Authorization": "Bearer " + auth_token}
+    headers = {"Authorization": f"Bearer {auth_token}"}
     user_id = 123
     path = GET_RECO_PATH.format(model_name="unknown_model", user_id=user_id)
     with client:
@@ -84,7 +84,7 @@ def test_get_reco_for_unknown_user(
     service_config: ServiceConfig,
 ) -> None:
     auth_token = service_config.admin_token
-    headers = {"Authorization": "Bearer " + auth_token}
+    headers = {"Authorization": f"Bearer {auth_token}"}
     user_id = 10**10
     path = GET_RECO_PATH.format(
         model_name="random_number_model", user_id=user_id

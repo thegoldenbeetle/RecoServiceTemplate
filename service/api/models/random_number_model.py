@@ -11,6 +11,6 @@ class RandomNumberModel(BaseModel):
         self.min_int = min_int
         self.max_int = max_int
 
-    def predict(self, user_id, k_recs: int = 100) -> List[int]:
+    def predict(self, user_id: int, k_recs: int = 100) -> List[int]:
         del user_id
-        return random.sample(range(self.min_int, self.max_int+1), k_recs)
+        return random.sample(range(self.min_int, self.max_int + 1), k_recs)

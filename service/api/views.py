@@ -45,6 +45,16 @@ RECO_EXAMPLE_404 = {
     ]
 }
 
+RECO_EXAMPLE_401 = {
+    "errors": [
+        {
+            "error_key": "not_correct_bearer_token",
+            "error_message": "Bearer token is not correct.",
+            "error_loc": None,
+        },
+    ]
+}
+
 
 @router.get(
     path="/reco/{model_name}/{user_id}",
@@ -54,7 +64,11 @@ RECO_EXAMPLE_404 = {
         404: {
             "description": "Not found user or model",
             "content": {"application/json": {"example": RECO_EXAMPLE_404}},
-        }
+        },
+        401: {
+            "description": "Not correct admin bearer token",
+            "content": {"application/json": {"example": RECO_EXAMPLE_401}},
+        },
     },
 )
 async def get_reco(
