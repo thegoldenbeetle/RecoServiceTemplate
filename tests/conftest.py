@@ -16,7 +16,7 @@ def service_config() -> ServiceConfig:
 def app(
     service_config: ServiceConfig,
 ) -> FastAPI:
-    app = create_app(service_config)
+    app = create_app(service_config, preload_model=False)
     return app
 
 

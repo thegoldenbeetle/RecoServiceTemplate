@@ -89,7 +89,10 @@ async def get_reco(
         raise UserNotFoundError(error_message=f"User {user_id} not found")
 
     k_recs = request.app.state.k_recs
-    model = MODELS[model_name]()
+    if model_name in request.app.state.models:
+        model = request.app.state.models[model_name]
+    else:
+        model = MODELS[model_name]()
     reco = model.predict(user_id=user_id, k_recs=k_recs)
     return RecoResponse(user_id=user_id, items=reco)
 
