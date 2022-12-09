@@ -26,8 +26,7 @@ class ServiceConfig(Config):
     popular_model_path: str = "data/popular_model.dill"
     kion_dataset_path: str = "data/kion_train"
 
-    offline_itemknn_path: str = "data/offline_bm25_itemknn.csv"
-    offline_popular_path: str = "data/offline_popular.txt"
+    offline_model_path: str = "data/offline_bm25_itemknn.dill"
 
     log_config: LogConfig
 
