@@ -1,9 +1,7 @@
-from typing import List
-
-import dill
+from typing import List, Optional
 
 from .base_model import BaseModel
-from .common import register_model
+from .common import load_dill, register_model
 
 
 @register_model("offline_itemknn_model")
@@ -12,10 +10,9 @@ class OfflineItemKNNModel(BaseModel):
         self,
         model_dill: str,
     ):
-        with open(model_dill, "rb") as f:
-            pickle_data = dill.load(f)
-        self._data = pickle_data["recs"]
-        self._popular_predicts = pickle_data["popular_recs"]
+        pickle_data = load_dill(model_dill)
+        self._data: List[Optional[List[int]]] = pickle_data["recs"]
+        self._popular_predicts: List[int] = pickle_data["popular_recs"]
 
     def predict(self, user_id: int, k_recs: int = 100) -> List[int]:
         if user_id < len(self._data) and self._data[user_id] is not None:

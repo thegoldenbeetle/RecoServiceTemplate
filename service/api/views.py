@@ -94,6 +94,19 @@ async def get_reco(
     else:
         model = MODELS[model_name]()
     reco = model.predict(user_id=user_id, k_recs=k_recs)
+    if len(reco) != k_recs:
+        print(
+            f"""
+**********************************
+**********************************
+
+PANIC {user_id}
+
+**********************************
+**********************************
+        """
+        )
+    #        exit(1)
     return RecoResponse(user_id=user_id, items=reco)
 
 

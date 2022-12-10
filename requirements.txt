@@ -5,13 +5,5 @@ uvloop
 uvicorn
 orjson
 starlette
-pytest
-requests
-mypy
-isort
-bandit
-flake8
-pylint
-httpx
 rectools
 pandas

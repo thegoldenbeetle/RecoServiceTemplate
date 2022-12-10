@@ -1,18 +1,19 @@
 import asyncio
 from concurrent.futures.thread import ThreadPoolExecutor
 from pathlib import Path
-from typing import Any, Dict, Tuple
+from typing import Any, Dict
 
 import pandas as pd
 import uvloop
 from fastapi import FastAPI
 from rectools import Columns
+from rectools.dataset import Dataset
 
 from ..log import app_logger, setup_logging
 from ..settings import ServiceConfig
 from .exception_handlers import add_exception_handlers
 from .middlewares import add_middlewares
-from .models import BaseModel, OfflineItemKNNModel
+from .models import BaseModel, ItemKNNModel, OfflineItemKNNModel
 from .views import add_views
 
 __all__ = ("create_app",)
@@ -36,11 +37,11 @@ def setup_asyncio(thread_name_prefix: str) -> None:
 
 def load_dataset(
     config: ServiceConfig,
-) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+) -> Dataset:
     dataset_path = Path(config.kion_dataset_path)
     interactions = pd.read_csv(dataset_path / "interactions.csv")
-    users = pd.read_csv(dataset_path / "users.csv")
-    items = pd.read_csv(dataset_path / "items.csv")
+    # users = pd.read_csv(dataset_path / "users.csv")
+    # items = pd.read_csv(dataset_path / "items.csv")
 
     # rename columns, convert timestamp
     interactions.rename(
@@ -52,14 +53,23 @@ def load_dataset(
     )
 
     interactions["datetime"] = pd.to_datetime(interactions["datetime"])
-
-    return interactions, users, items
+    return Dataset.construct(
+        interactions_df=interactions,
+        user_features_df=None,
+        item_features_df=None,
+    )
 
 
 def init_models(config: ServiceConfig) -> Dict[str, BaseModel]:
+    dataset = load_dataset(config)
     return {
+        "itemknn_model": ItemKNNModel(
+            config.itemknn_model_path,
+            config.popular_model_path,
+            dataset,
+        ),
         "offline_itemknn_model": OfflineItemKNNModel(
-            config.offline_model_path
+            config.offline_model_path,
         ),
     }
 
