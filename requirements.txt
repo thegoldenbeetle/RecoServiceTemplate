@@ -7,3 +7,4 @@ orjson
 starlette
 rectools
 pandas
+annoy 

@@ -28,6 +28,10 @@ class ServiceConfig(Config):
 
     offline_model_path: str = "data/offline_bm25_itemknn.dill"
 
+    puresvd_model_path: str = "data/hw4_model.dill"
+    puresvd_popular_path: str = "data/hw4_popular.dill"
+    puresvd_dataset_path: str = "data/hw4_dataset.dill"
+
     log_config: LogConfig
 
 

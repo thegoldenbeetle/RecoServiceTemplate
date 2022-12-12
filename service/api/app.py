@@ -9,6 +9,8 @@ from fastapi import FastAPI
 from rectools import Columns
 from rectools.dataset import Dataset
 
+from service.api.models.puresvd_with_annoy import PureSVDWithAnnoy
+
 from ..log import app_logger, setup_logging
 from ..settings import ServiceConfig
 from .exception_handlers import add_exception_handlers
@@ -70,6 +72,11 @@ def init_models(config: ServiceConfig) -> Dict[str, BaseModel]:
         ),
         "offline_itemknn_model": OfflineItemKNNModel(
             config.offline_model_path,
+        ),
+        "puresvd": PureSVDWithAnnoy(
+            config.puresvd_model_path,
+            config.puresvd_popular_path,
+            config.puresvd_dataset_path,
         ),
     }
 
