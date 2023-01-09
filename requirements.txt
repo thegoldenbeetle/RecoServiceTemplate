@@ -1,0 +1,9 @@
+fastapi
+pydantic
+gunicorn
+uvloop
+uvicorn
+orjson
+starlette
+rectools
+pandas
