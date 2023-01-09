@@ -13,7 +13,7 @@ from ..log import app_logger, setup_logging
 from ..settings import ServiceConfig
 from .exception_handlers import add_exception_handlers
 from .middlewares import add_middlewares
-from .models import BaseModel, ItemKNNModel, OfflineItemKNNModel
+from .models import BaseModel, Ranking
 from .views import add_views
 
 __all__ = ("create_app",)
@@ -61,16 +61,22 @@ def load_dataset(
 
 
 def init_models(config: ServiceConfig) -> Dict[str, BaseModel]:
-    dataset = load_dataset(config)
+    # dataset = load_dataset(config)
     return {
-        "itemknn_model": ItemKNNModel(
-            config.itemknn_model_path,
+        # "itemknn_model": ItemKNNModel(
+        #     config.itemknn_model_path,
+        #     config.popular_model_path,
+        #     dataset,
+        # ),
+        "ranking": Ranking(
+            config.ranking_model_path,
             config.popular_model_path,
-            dataset,
-        ),
-        "offline_itemknn_model": OfflineItemKNNModel(
-            config.offline_model_path,
-        ),
+            config.ranker_model_path,
+            config.ranking_data_path,
+        )
+        # "offline_itemknn_model": OfflineItemKNNModel(
+        #     config.offline_model_path,
+        # ),
     }
 
 

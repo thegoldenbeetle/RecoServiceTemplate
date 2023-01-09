@@ -1,4 +1,5 @@
-from typing import Callable, Dict, Type
+from pathlib import Path
+from typing import Callable, Dict, Type, Union
 
 import dill
 
@@ -9,7 +10,7 @@ from .base_model import BaseModel
 MODELS: Dict[str, Type[BaseModel]] = {}
 
 
-def load_dill(path: str):
+def load_dill(path: Union[Path, str]):
     with open(path, "rb") as f:
         return dill.load(f)
 

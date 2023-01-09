@@ -315,6 +315,23 @@ scikit-learn = "*"
 scipy = ">=0.17.0"
 
 [[package]]
+name = "lightgbm"
+version = "3.3.4"
+description = "LightGBM Python Package"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+numpy = "*"
+scikit-learn = "!=0.22.0"
+scipy = "*"
+wheel = "*"
+
+[package.extras]
+dask = ["dask[array] (>=2.0.0)", "dask[dataframe] (>=2.0.0)", "dask[distributed] (>=2.0.0)", "pandas"]
+
+[[package]]
 name = "markdown"
 version = "3.2.2"
 description = "Python implementation of Markdown."
@@ -823,6 +840,17 @@ docs = ["Sphinx (>=1.7.3,<1.8.0)", "sphinx-rtd-theme (>=0.2.4,<0.3.0)", "sphinxc
 test = ["aiohttp", "flake8 (>=3.8.4,<3.9.0)", "mypy (>=0.800)", "psutil", "pyOpenSSL (>=19.0.0,<19.1.0)", "pycodestyle (>=2.6.0,<2.7.0)"]
 
 [[package]]
+name = "wheel"
+version = "0.38.4"
+description = "A built-package format for Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+test = ["pytest (>=3.0.0)"]
+
+[[package]]
 name = "wrapt"
 version = "1.12.1"
 description = "Module for decorators, wrappers and monkey patching."
@@ -833,7 +861,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8,<3.10.0"
-content-hash = "4a3bfedfac07bd190a87ff8f4149ba78690ece4783180c7bac91fa3ad39dc7ce"
+content-hash = "b379fc698f4209cc2c97cbb6cf42eed6b3c89d8b776774f305b069a821361eb6"
 
 [metadata.files]
 anyio = [
@@ -953,6 +981,13 @@ lazy-object-proxy = [
 ]
 lightfm = [
     {file = "lightfm-1.16.tar.gz", hash = "sha256:41950fd8affde192c10b517148aa7f6d016ae2f75a2ec1187335f1c4d21876ac"},
+]
+lightgbm = [
+    {file = "lightgbm-3.3.4-py3-none-macosx_10_15_x86_64.macosx_11_6_x86_64.macosx_12_0_x86_64.whl", hash = "sha256:eb11d83b2f6ba6f77c6f4765de0d646c1bfbc47b5aec9247576c3c0d60e52960"},
+    {file = "lightgbm-3.3.4-py3-none-manylinux1_x86_64.whl", hash = "sha256:bf79910a75ba6260cdefa3ddfe030707928ba2a0ffb204c0b6ab31f56fc27ebd"},
+    {file = "lightgbm-3.3.4-py3-none-manylinux2014_aarch64.whl", hash = "sha256:5015ee512e4fbe2ca901b4a23dca650f1a423cae900646158f340ab84399fbe2"},
+    {file = "lightgbm-3.3.4-py3-none-win_amd64.whl", hash = "sha256:a3b29612af17096dbcc9419dd5ef5342dbb86cf77ec8f99064e2fa101722c3da"},
+    {file = "lightgbm-3.3.4.tar.gz", hash = "sha256:d6fa4d5b2a6f38d588434193f366757b20b301300b7385ca6924e2e402fc9063"},
 ]
 markdown = [
     {file = "Markdown-3.2.2-py3-none-any.whl", hash = "sha256:c467cd6233885534bf0fe96e62e3cf46cfc1605112356c4f9981512b8174de59"},
@@ -1429,6 +1464,10 @@ uvloop = [
     {file = "uvloop-0.15.3-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:5cda65fc60a645470b8525ce014516b120b7057b576fa876cdfdd5e60ab1efbb"},
     {file = "uvloop-0.15.3-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1ff05116ede1ebdd81802df339e5b1d4cab1dfbd99295bf27e90b4cec64d70e9"},
     {file = "uvloop-0.15.3.tar.gz", hash = "sha256:905f0adb0c09c9f44222ee02f6b96fd88b493478fffb7a345287f9444e926030"},
+]
+wheel = [
+    {file = "wheel-0.38.4-py3-none-any.whl", hash = "sha256:b60533f3f5d530e971d6737ca6d58681ee434818fab630c83a734bb10c083ce8"},
+    {file = "wheel-0.38.4.tar.gz", hash = "sha256:965f5259b566725405b05e7cf774052044b1ed30119b5d586b2703aafe8719ac"},
 ]
 wrapt = [
     {file = "wrapt-1.12.1.tar.gz", hash = "sha256:b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7"},
