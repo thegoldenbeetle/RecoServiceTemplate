@@ -10,10 +10,12 @@ from .common import MODELS, load_dill, register_model
 from .itemknn_model import ItemKNNModel
 from .offline_model import OfflineItemKNNModel
 from .random_number_model import RandomNumberModel
+from .ranking import Ranking
 
 __all__ = [
     "MODELS",
     "BaseModel",
+    "Ranking",
     "ItemKNNModel",
     "OfflineItemKNNModel",
     "RandomNumberModel",

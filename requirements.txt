@@ -7,3 +7,5 @@ orjson
 starlette
 rectools
 pandas
+dill
+lightgbm

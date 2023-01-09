@@ -28,6 +28,10 @@ class ServiceConfig(Config):
 
     offline_model_path: str = "data/offline_bm25_itemknn.dill"
 
+    ranking_model_path: str = "data/hw5/models/itemknn_model.dill"
+    ranker_model_path: str = "data/hw5/models/listwise_model.dill"
+    ranking_data_path: str = "data/hw5/service/"
+
     log_config: LogConfig
 
 
